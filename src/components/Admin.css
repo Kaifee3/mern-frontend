@@ -1,0 +1,40 @@
+/* admin.css */
+
+.admin-container {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f9fb;
+  min-height: 100vh;
+}
+
+.admin-navbar {
+  display: flex;
+  gap: 20px;
+  background-color: #0e0e2c;
+  padding: 16px 24px;
+  justify-content: center;
+  border-bottom: 2px solid #007bff;
+}
+
+.admin-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.admin-link:hover {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.admin-content {
+  padding: 30px;
+  max-width: 1200px;
+  margin: auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  margin-top: 40px;
+}

@@ -1,0 +1,93 @@
+/* Register.css */
+
+.App-Register-Row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f0f2f5;
+  padding: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.App-Register-Row > div {
+  max-width: 450px;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.App-Register-Row h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 24px;
+}
+
+.App-Register-Row input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.App-Register-Row input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.App-Register-Row button {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.App-Register-Row button:hover {
+  background-color: #0056b3;
+}
+
+.App-Register-Row a {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #007bff;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.App-Register-Row a:hover {
+  text-decoration: underline;
+}
+
+hr {
+  margin-top: 30px;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+.success-message,
+.error-message {
+  text-align: center;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.success-message {
+  color: green;
+}
+
+.error-message {
+  color: red;
+}

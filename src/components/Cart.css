@@ -1,0 +1,114 @@
+/* Cart.css */
+
+.cart-container {
+  max-width: 900px;
+  margin: 40px auto;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.cart-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 24px;
+}
+
+.cart-error {
+  color: red;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #f9f9f9;
+  padding: 12px 20px;
+  margin: 12px 0;
+  border-radius: 10px;
+  flex-wrap: wrap;
+}
+
+.cart-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.cart-item-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cart-item-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.cart-item-price {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.cart-qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-qty-controls button {
+  padding: 6px 12px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cart-qty-controls button:hover {
+  background-color: #0056b3;
+}
+
+.cart-item-total {
+  font-weight: 600;
+  color: #000;
+  font-size: 1rem;
+}
+
+.order-summary {
+  text-align: right;
+  margin-top: 20px;
+  font-size: 1.1rem;
+  color: #222;
+}
+
+.place-order-btn,
+.login-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: #28a745;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.2s ease;
+}
+
+.place-order-btn:hover,
+.login-btn:hover {
+  background-color: #218838;
+}

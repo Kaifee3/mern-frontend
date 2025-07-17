@@ -1,0 +1,83 @@
+/* Footer.css */
+
+.footer {
+  background-color: #0e0e2c;
+  color: #ffffff;
+  padding: 40px 20px 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto 30px;
+}
+
+.footer-logo {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-logo img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.footer-logo h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.footer-logo p {
+  font-size: 0.95rem;
+  margin-top: 8px;
+  color: #ccc;
+}
+
+.footer-contact,
+.footer-social {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-contact h4,
+.footer-social h4 {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.footer-contact p,
+.footer-social p {
+  font-size: 0.95rem;
+  color: #ccc;
+  margin-bottom: 6px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+  font-size: 1.5rem;
+}
+
+.social-icons a {
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #007bff;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #333;
+  padding-top: 15px;
+  font-size: 0.9rem;
+  color: #bbb;
+}
