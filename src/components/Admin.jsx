@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
-import "./admin.css";
+import "./Admin.css";
 
 export default function Admin() {
   return (
