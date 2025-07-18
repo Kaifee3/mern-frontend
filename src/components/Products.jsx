@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import "./Products.css";
+import "./CSS/Products.css";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -64,7 +64,7 @@ export default function Products() {
       await axios.post(`${API_URL}/api/products`, form);
       setError("Product added successfully");
       resetForm();
-      setPage(1); // Reset to first page
+      setPage(1); 
       fetchProducts(1);
     } catch (err) {
       console.error(err);

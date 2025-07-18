@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRef } from "react";
 import { useContext } from "react";
 import { AppContext } from "../App";
-import "./Users.css";
+import "./CSS/Users.css";
 
 import axios from "axios";
 export default function Users() {

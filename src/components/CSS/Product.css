@@ -1,13 +1,13 @@
 /* 🎠 Carousel Styles */
 .carousel-container {
   max-width: 1200px;
-  margin: 90px auto 30px auto; /* Top margin added for fixed navbar */
+  margin: 90px auto 30px auto;
   border-radius: 12px;
   overflow: hidden;
 }
 
 .carousel .slide img {
-  height: 500px;
+  height: 400px;
   width: 110%;
   object-fit: cover;
   border-radius: 8px;

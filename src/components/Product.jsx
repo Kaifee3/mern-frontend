@@ -3,7 +3,7 @@ import axios from "axios";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { AppContext } from "../App";
-import "./Product.css";
+import "./CSS/Product.css";
 
 export default function Product() {
   const API_URL = import.meta.env.VITE_API_URL;

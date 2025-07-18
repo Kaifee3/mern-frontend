@@ -1,17 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { useContext } from "react";
 import { AppContext } from "../App";
-import "./Order.css";
+import "./CSS/Order.css";
+
 export default function Order() {
   const API_URL = import.meta.env.VITE_API_URL;
   const { user } = useContext(AppContext);
   const [error, setError] = useState();
   const [orders, setOrders] = useState([]);
+
   const fetchOrders = async () => {
     try {
-      const url = `${API_URL}/api/orders/${user.email}`;
-      const result = await axios.get(url);
+      const url = `${API_URL}/api/orders/user/${user.email}`;
+      const result = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       setOrders(result.data);
     } catch (err) {
       console.log(err);
@@ -26,6 +31,7 @@ export default function Order() {
   return (
     <div className="order-container">
       <h3 className="order-title">My Orders</h3>
+      {orders.length === 0 && <p>No orders found.</p>}
       {orders &&
         orders.map((order) => (
           <div className="order-card" key={order._id}>
@@ -50,8 +56,8 @@ export default function Order() {
                 </tr>
               </thead>
               <tbody>
-                {order.items.map((item) => (
-                  <tr key={item._id}>
+                {order.items.map((item, index) => (
+                  <tr key={index}>
                     <td>{item.productName}</td>
                     <td>
                       <img

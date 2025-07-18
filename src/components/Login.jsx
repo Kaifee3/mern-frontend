@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { AppContext } from "../App";
-import "./Login.css";
+import "./CSS/Login.css";
 export default function Login() {
   const { user, setUser } = useContext(AppContext);
   const [error, setError] = useState();
@@ -39,7 +39,7 @@ export default function Login() {
         placeholder="Password"
         onChange={(e) => setUser({ ...user, password: e.target.value })}
       />
-      <button className="login-button" onClick={handleSubmit}>Submit</button>
+      <button className="login-button" onClick={handleSubmit}>Login</button>
       <hr />
       <Link className="login-link" to="/register">Create Account</Link>
     </div>

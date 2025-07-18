@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { AppContext } from "../App";
-import "./Orders.css";
+import "./CSS/Orders.css";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
@@ -15,7 +15,7 @@ export default function Orders() {
 
   const fetchOrders = async () => {
     try {
-      const url = `${API_URL}/api/orders/?page=${page}&limit=${limit}&status=${status}`;
+      const url = `${API_URL}/api/orders/all?page=${page}&limit=${limit}&status=${status}`;
       const result = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${user.token}`,
@@ -24,8 +24,8 @@ export default function Orders() {
       setOrders(result.data.orders);
       setTotalPages(result.data.total);
     } catch (err) {
-      console.log(err);
-      setError("Something went wrong");
+      console.log("Error fetching orders:", err.response?.data || err.message);
+      setError(err.response?.data?.message || "Something went wrong");
     }
   };
 
@@ -66,6 +66,12 @@ export default function Orders() {
             <li key={order._id} className="order-item">
               <div>
                 <strong>Order ID:</strong> {order._id}
+              </div>
+              <div>
+                <strong>Customer:</strong> {order.shippingName}
+              </div>
+              <div>
+                <strong>Address:</strong> {order.shippingAddress}
               </div>
               <div>
                 <strong>Value:</strong> ₹{order.orderValue}

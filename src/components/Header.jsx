@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { AppContext } from "../App";
-import "./Header.css";
+import "./CSS/Header.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -35,7 +35,8 @@ export default function Header() {
 
   return (
     <div className="navbar">
-      <img src="/images/logo.png" alt="Slide 2"/>
+      <a href="/">
+      <img src="/images/logo.png" alt="Slide 2"/></a>
       <div className="nav-links">
         <input
           type="text"
@@ -49,6 +50,9 @@ export default function Header() {
         <Link to="/order">Order</Link>
         {user?.role === "admin" && <Link to="/admin">Admin</Link>}
         {user?.token ? <Link to="/profile">Profile</Link> : <Link to="/login">Login</Link>}
+        {user?.firstName && (
+          <div className="welcome-text">Hello, {user.firstName}</div>
+      )}
       </div>
       {error && <div className="not-found-popup">{error}</div>}
     </div>
