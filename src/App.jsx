@@ -19,11 +19,13 @@ export const AppContext = createContext();
 function App() {
   const [cart, setCart] = useState([]);
   const [user, setUser] = useState({});
+  const [products, setProducts] = useState([]);
   return (
     <div className="App-Container">
-      <AppContext.Provider value={{ cart, setCart, user, setUser }}>
+      <AppContext.Provider value={{ cart, setCart, user, setUser, products, setProducts }}>
         <BrowserRouter>
           <Header />
+          <main>
           <Routes>
             <Route index element={<Product />} />
             <Route path="login" element={<Login />} />
@@ -36,7 +38,9 @@ function App() {
               <Route path="products" element={<Products />} />
               <Route path="orders" element={<Orders />} />
             </Route>
+            
           </Routes>
+          </main>
           <Footer />
         </BrowserRouter>
       </AppContext.Provider>

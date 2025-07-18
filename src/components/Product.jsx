@@ -1,26 +1,39 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import axios from "axios";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { AppContext } from "../App";
 import "./Product.css";
+
 export default function Product() {
   const API_URL = import.meta.env.VITE_API_URL;
-  const [products, setProducts] = useState([]);
-  const [error, setError] = useState();
-  const { user, cart, setCart } = useContext(AppContext);
+  const { cart, setCart, products, setProducts } = useContext(AppContext);
+  const [allProducts, setAllProducts] = useState([]);
+
+  // Fetch products from backend
   const fetchProducts = async () => {
     try {
-      const url = `${API_URL}/api/products/all`;
-      const result = await axios.get(url);
-      setProducts(result.data.products);
+      const { data } = await axios.get(`${API_URL}/api/products/all`);
+      setProducts(data.products);     // Update context
+      setAllProducts(data.products); // Update local state
     } catch (err) {
-      console.log(err);
-      setError("Something went wrong");
+      console.error("Error fetching products:", err);
     }
   };
+
+  // Run once on page load
   useEffect(() => {
     fetchProducts();
   }, []);
 
+  // Re-sync local display when context updates
+  useEffect(() => {
+    if (products.length > 0) {
+      setAllProducts(products);
+    }
+  }, [products]);
+
+  // Add to cart
   const addToCart = (product) => {
     const found = cart.find((item) => item._id === product._id);
     if (!found) {
@@ -28,23 +41,55 @@ export default function Product() {
       setCart([...cart, product]);
     }
   };
-  return (
-    <div className="product-container">
-  {products.map((product) => (
-    <div className="product-card" key={product._id}>
-      <img className="product-image" src={product.imgUrl} />
-      <h3 className="product-title">{product.productName}</h3>
-      <p className="product-description">{product.description}</p>
-      <h4 className="product-price">₹{product.price}</h4>
-      <button
-        className="add-to-cart-button"
-        onClick={() => addToCart(product)}
-      >
-        Add to Cart
-      </button>
-    </div>
-  ))}
-</div>
 
+  return (
+    <div>
+      {/* Banner Carousel */}
+      <div className="carousel-container">
+        <Carousel
+          showThumbs={false}
+          autoPlay
+          infiniteLoop
+          interval={3000}
+          showStatus={false}
+          showArrows={true}
+        >
+          <div>
+            <img src="/images/sl1.jpg" alt="Slide 1" />
+            <p className="legend">Welcome to Our Store</p>
+          </div>
+          <div>
+            <img src="/images/sl2.jpg" alt="Slide 2" />
+            <p className="legend">Exclusive Deals</p>
+          </div>
+          <div>
+            <img src="/images/sl3.jpg" alt="Slide 3" />
+            <p className="legend">New Arrivals</p>
+          </div>
+        </Carousel>
+      </div>
+
+      {/* Product Cards */}
+      <div className="product-container">
+        {allProducts.map((product) => (
+          <div className="product-card" key={product._id}>
+            <img
+              className="product-image"
+              src={product.imgUrl}
+              alt={product.productName}
+            />
+            <h3 className="product-title">{product.productName}</h3>
+            <p className="product-description">{product.description}</p>
+            <h4 className="product-price">₹{product.price}</h4>
+            <button
+              className="add-to-cart-button"
+              onClick={() => addToCart(product)}
+            >
+              Add to Cart
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

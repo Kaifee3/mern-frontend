@@ -1,68 +1,60 @@
-/* Footer.css */
-
 .footer {
   background-color: #0e0e2c;
   color: #ffffff;
-  padding: 40px 20px 20px;
+  padding: 15px 10px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+  text-align: center;
 }
 
 .footer-top {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 40px;
+  gap: 30px;
   max-width: 1200px;
-  margin: 0 auto 30px;
+  margin: 0 auto;
 }
 
-.footer-logo {
+.footer-logo,
+.footer-contact,
+.footer-social {
   flex: 1;
-  min-width: 250px;
+  min-width: 160px;
 }
 
 .footer-logo img {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .footer-logo h3 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
-.footer-logo p {
-  font-size: 0.95rem;
-  margin-top: 8px;
+.footer-logo p,
+.footer-contact p,
+.footer-social p {
+  font-size: 0.85rem;
   color: #ccc;
-}
-
-.footer-contact,
-.footer-social {
-  flex: 1;
-  min-width: 200px;
+  margin: 5px 0;
 }
 
 .footer-contact h4,
 .footer-social h4 {
-  font-size: 1.1rem;
-  margin-bottom: 12px;
+  font-size: 1rem;
+  margin-bottom: 10px;
   color: #ffffff;
-}
-
-.footer-contact p,
-.footer-social p {
-  font-size: 0.95rem;
-  color: #ccc;
-  margin-bottom: 6px;
 }
 
 .social-icons {
   display: flex;
-  gap: 12px;
-  font-size: 1.5rem;
+  gap: 10px;
+  font-size: 1.3rem;
+  justify-content: flex-start;
 }
 
 .social-icons a {
@@ -75,9 +67,9 @@
 }
 
 .footer-bottom {
-  text-align: center;
-  border-top: 1px solid #333;
-  padding-top: 15px;
-  font-size: 0.9rem;
+  margin-top: 10px;
+  font-size: 0.8rem;
   color: #bbb;
+  border-top: 1px solid #333;
+  padding-top: 10px;
 }

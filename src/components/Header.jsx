@@ -1,29 +1,56 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import App, { AppContext } from "../App";
+import axios from "axios";
+import { AppContext } from "../App";
 import "./Header.css";
+
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function Header() {
-  const { user } = useContext(AppContext);
+  const { user, cart, setProducts } = useContext(AppContext);
+  const [searchVal, setSearchVal] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/api/products?search=${searchVal}`);
+      const found = response.data.products;
+
+      if (found.length > 0) {
+        setProducts(found); // Show only found items
+        setError("");
+      } else {
+        setProducts([]); // Clear display
+        setError("Product not found");
+        setTimeout(() => setError(""), 2000);
+      }
+    } catch (err) {
+      console.error("Error searching:", err);
+      setError("Search failed");
+      setTimeout(() => setError(""), 2000);
+    }
+  };
+
+  const cartCount = cart?.reduce((acc, item) => acc + item.qty, 0) || 0;
+
   return (
-    <div>
-      <div className="navbar">
-  <h1>AK Frontend</h1>
-  <div className="nav-links">
-    <Link to="/">Home</Link>
-    <Link to="/cart">MyCart</Link>
-    <Link to="/order">MyOrder</Link>
-    {user?.role === "admin" && <Link to="/admin">Admin</Link>}
-    {user?.token ? (
-      <Link to="/profile">Profile</Link>
-    ) : (
-      <Link to="/login">Login</Link>
-    )}
-  </div>
-</div>
-
-
-
+    <div className="navbar">
+      <img src="/images/logo.png" alt="Slide 2"/>
+      <div className="nav-links">
+        <input
+          type="text"
+          value={searchVal}
+          onChange={(e) => setSearchVal(e.target.value)}
+          placeholder="Search products..."
+        />
+        <button onClick={handleSearch}>Search</button>
+        <Link to="/">Home</Link>
+        <Link to="/cart">Cart ({cartCount})</Link>
+        <Link to="/order">Order</Link>
+        {user?.role === "admin" && <Link to="/admin">Admin</Link>}
+        {user?.token ? <Link to="/profile">Profile</Link> : <Link to="/login">Login</Link>}
+      </div>
+      {error && <div className="not-found-popup">{error}</div>}
     </div>
   );
 }

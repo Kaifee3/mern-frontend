@@ -20,16 +20,16 @@ export default function Products() {
 
   const API_URL = import.meta.env.VITE_API_URL;
 
-  const fetchProducts = async () => {
+  const fetchProducts = async (customPage = page, customSearch = searchVal) => {
     try {
       setError("Loading...");
-      const url = `${API_URL}/api/products/?page=${page}&limit=${limit}&search=${searchVal}`;
+      const url = `${API_URL}/api/products/?page=${customPage}&limit=${limit}&search=${customSearch}`;
       const result = await axios.get(url);
       setProducts(result.data.products);
       setTotalPages(result.data.total);
-      setError();
+      setError("");
     } catch (err) {
-      console.log(err);
+      console.error(err);
       setError("Something went wrong");
     }
   };
@@ -40,12 +40,11 @@ export default function Products() {
 
   const handleDelete = async (id) => {
     try {
-      const url = `${API_URL}/api/products/${id}`;
-      await axios.delete(url);
-      setError("Product Deleted Successfully");
+      await axios.delete(`${API_URL}/api/products/${id}`);
+      setError("Product deleted successfully");
       fetchProducts();
     } catch (err) {
-      console.log(err);
+      console.error(err);
       setError("Something went wrong");
     }
   };
@@ -62,13 +61,13 @@ export default function Products() {
       return;
     }
     try {
-      const url = `${API_URL}/api/products`;
-      await axios.post(url, form);
+      await axios.post(`${API_URL}/api/products`, form);
       setError("Product added successfully");
-      fetchProducts();
       resetForm();
+      setPage(1); // Reset to first page
+      fetchProducts(1);
     } catch (err) {
-      console.log(err);
+      console.error(err);
       setError("Something went wrong");
     }
   };
@@ -91,14 +90,13 @@ export default function Products() {
       return;
     }
     try {
-      const url = `${API_URL}/api/products/${editId}`;
-      await axios.patch(url, form);
+      await axios.patch(`${API_URL}/api/products/${editId}`, form);
       setError("Product updated successfully");
-      fetchProducts();
-      setEditId();
       resetForm();
+      setEditId();
+      fetchProducts();
     } catch (err) {
-      console.log(err);
+      console.error(err);
       setError("Something went wrong");
     }
   };
@@ -106,6 +104,11 @@ export default function Products() {
   const handleCancel = () => {
     setEditId();
     resetForm();
+  };
+
+  const handleSearch = () => {
+    setPage(1);
+    fetchProducts(1, searchVal);
   };
 
   const resetForm = () => {
@@ -143,7 +146,7 @@ export default function Products() {
         <input
           name="price"
           value={form.price}
-          type="text"
+          type="number"
           placeholder="Price"
           onChange={handleChange}
           required
@@ -158,22 +161,23 @@ export default function Products() {
         />
         {editId ? (
           <>
-            <button onClick={handleUpdate}>Update</button>
-            <button onClick={handleCancel}>Cancel</button>
+            <button type="submit" onClick={handleUpdate}>Update</button>
+            <button type="button" onClick={handleCancel}>Cancel</button>
           </>
         ) : (
-          <button onClick={handleAdd}>Add</button>
+          <button type="submit" onClick={handleAdd}>Add</button>
         )}
       </form>
 
-      {/* Search box (fixed position between form and table) */}
+      {/* Search Box */}
       <div className="search-box">
         <input
           type="text"
           placeholder="Search Products..."
+          value={searchVal}
           onChange={(e) => setSearchVal(e.target.value)}
         />
-        <button onClick={fetchProducts}>Search</button>
+        <button onClick={handleSearch}>Search</button>
       </div>
 
       {/* Product Table */}
@@ -192,40 +196,24 @@ export default function Products() {
             <tr key={value._id}>
               <td>{value.productName}</td>
               <td>{value.description}</td>
-              <td>{value.price}</td>
+              <td>₹{value.price}</td>
               <td>
                 <img src={value.imgUrl} alt={value.productName} width="50" />
               </td>
               <td className="action-buttons">
-                <button className="edit-btn" onClick={() => handleEdit(value)}>
-                  Edit
-                </button>
-                <button
-                  className="delete-btn"
-                  onClick={() => handleDelete(value._id)}
-                >
-                  Delete
-                </button>
+                <button className="edit-btn" onClick={() => handleEdit(value)}>Edit</button>
+                <button className="delete-btn" onClick={() => handleDelete(value._id)}>Delete</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      {/* Pagination fixed below product table */}
+      {/* Pagination */}
       <div className="pagination">
-        <button disabled={page === 1} onClick={() => setPage(page - 1)}>
-          Previous
-        </button>
-        <span>
-          Page {page} of {totalPages}
-        </span>
-        <button
-          disabled={page === totalPages}
-          onClick={() => setPage(page + 1)}
-        >
-          Next
-        </button>
+        <button disabled={page === 1} onClick={() => setPage(page - 1)}>Previous</button>
+        <span>Page {page} of {totalPages}</span>
+        <button disabled={page === totalPages} onClick={() => setPage(page + 1)}>Next</button>
       </div>
     </div>
   );

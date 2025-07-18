@@ -1,12 +1,30 @@
-/* Header.css */
-
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
   background-color: #1e1e2f;
   padding: 15px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+}
+
+
+.navbar img {
+  height: 55px;
+  width: 70px;
+  object-fit: cover;
+  margin-right: 16px;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  background-color: #ffffff;
+}
+
+.navbar img:hover {
+  transform: scale(1.05);
 }
 
 .navbar h1 {
@@ -17,6 +35,7 @@
 
 .nav-links {
   display: flex;
+  align-items: center;
   gap: 15px;
 }
 
@@ -24,12 +43,73 @@
   color: #ffffff;
   text-decoration: none;
   font-weight: 500;
+  font-size: 1rem;
+  padding: 10px 12px;
   transition: color 0.3s ease, border-bottom 0.3s ease;
 }
 
 .nav-links a:hover {
   color: #61dafb;
   border-bottom: 2px solid #61dafb;
+}
+
+.nav-links input[type="text"] {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  width: 200px;
+  transition: border-color 0.3s ease;
+  background-color: white;
+  color: #1e1e2f;
+}
+
+.nav-links input[type="text"]:focus {
+  border-color: #61dafb;
+}
+
+.nav-links button {
+  padding: 8px 14px;
+  background-color: #61dafb;
+  color: #1e1e2f;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-links button:hover {
+  background-color: #4cc3f1;
+}
+
+.welcome-text {
+  color: white;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.cart-count {
+  background-color: #ff3d00;
+  padding: 2px 8px;
+  margin-left: 6px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.not-found-popup {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  background-color: #ff4d4f;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  font-size: 14px;
 }
 
 @media (max-width: 600px) {
@@ -42,9 +122,19 @@
     flex-direction: column;
     width: 100%;
     margin-top: 10px;
+    gap: 10px;
   }
 
   .nav-links a {
     padding: 8px 0;
+  }
+
+  .welcome-text {
+    margin-top: 10px;
+  }
+
+  .nav-links input[type="text"],
+  .nav-links button {
+    width: 100%;
   }
 }
