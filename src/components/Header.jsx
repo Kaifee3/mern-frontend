@@ -36,30 +36,33 @@ export default function Header() {
 
   return (
     <div className="navbar">
-      <a href="/" className="logo">
-        <img src="/images/logo.png" alt="Logo" />
-      </a>
-      <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
-        ☰
-      </button>
-      <div className={`nav-links ${menuOpen ? "show" : ""}`}>
-        <input
-          type="text"
-          value={searchVal}
-          onChange={(e) => setSearchVal(e.target.value)}
-          placeholder="Search products..."
-        />
-        <button onClick={handleSearch}>Search</button>
-        <Link to="/">Home</Link>
-        <Link to="/cart">Cart ({cartCount})</Link>
-        <Link to="/order">Order</Link>
-        {user?.role === "admin" && <Link to="/admin">Admin</Link>}
-        {user?.token ? <Link to="/profile">Profile</Link> : <Link to="/login">Login</Link>}
-        {user?.firstName && (
-          <div className="welcome-text">Hello, {user.firstName}</div>
-        )}
-      </div>
-      {error && <div className="not-found-popup">{error}</div>}
-    </div>
+  <div className="nav-top">
+    <a href="/" className="logo">
+      <img src="/images/logo.png" alt="Logo" />
+    </a>
+    <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
+      ☰
+    </button>
+  </div>
+
+  <div className={`nav-links ${menuOpen ? "open" : ""}`}>
+    <input
+      type="text"
+      value={searchVal}
+      onChange={(e) => setSearchVal(e.target.value)}
+      placeholder="Search products..."
+    />
+    <button onClick={handleSearch}>Search</button>
+    <Link to="/">Home</Link>
+    <Link to="/cart">Cart ({cartCount})</Link>
+    <Link to="/order">Order</Link>
+    {user?.role === "admin" && <Link to="/admin">Admin</Link>}
+    {user?.token ? <Link to="/profile">Profile</Link> : <Link to="/login">Login</Link>}
+    {user?.firstName && <div className="welcome-text">Hello, {user.firstName}</div>}
+  </div>
+
+  {error && <div className="not-found-popup">{error}</div>}
+</div>
+
   );
 }
