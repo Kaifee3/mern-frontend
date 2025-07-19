@@ -67,7 +67,7 @@ export default function Header() {
         {user?.token ? (
           <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
         ) : (
-          <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+          <Link to="/login" onClick={() => setMenuOpen(false)}>Login </Link>
         )}
         {user?.firstName && (
           <div className="welcome-text">Hello, {user.firstName}</div>
