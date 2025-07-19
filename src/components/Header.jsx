@@ -10,6 +10,7 @@ export default function Header() {
   const { user, cart, setProducts } = useContext(AppContext);
   const [searchVal, setSearchVal] = useState("");
   const [error, setError] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleSearch = async () => {
     try {
@@ -17,10 +18,10 @@ export default function Header() {
       const found = response.data.products;
 
       if (found.length > 0) {
-        setProducts(found); // Show only found items
+        setProducts(found);
         setError("");
       } else {
-        setProducts([]); // Clear display
+        setProducts([]);
         setError("Product not found");
         setTimeout(() => setError(""), 2000);
       }
@@ -35,9 +36,13 @@ export default function Header() {
 
   return (
     <div className="navbar">
-      <a href="/">
-      <img src="/images/logo.png" alt="Slide 2"/></a>
-      <div className="nav-links">
+      <a href="/" className="logo">
+        <img src="/images/logo.png" alt="Logo" />
+      </a>
+      <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
+        ☰
+      </button>
+      <div className={`nav-links ${menuOpen ? "show" : ""}`}>
         <input
           type="text"
           value={searchVal}
@@ -52,7 +57,7 @@ export default function Header() {
         {user?.token ? <Link to="/profile">Profile</Link> : <Link to="/login">Login</Link>}
         {user?.firstName && (
           <div className="welcome-text">Hello, {user.firstName}</div>
-      )}
+        )}
       </div>
       {error && <div className="not-found-popup">{error}</div>}
     </div>
