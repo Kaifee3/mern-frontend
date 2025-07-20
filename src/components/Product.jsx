@@ -84,15 +84,10 @@ export default function Product() {
                 <button className="view-details-button">View Details</button>
               </Link>
 
-              <button
-                className="buy-now-button"
-                onClick={() => {
-                  addToCart(product);
-                  window.location.href = "/cart";
-                }}
-              >
-                Buy Now
-              </button>
+               <Link to={`/product/${product._id}`}>
+                <button className="view-details-button">Buy Now</button>
+              </Link>
+              
             </div>
           </div>
         ))}
