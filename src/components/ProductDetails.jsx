@@ -9,11 +9,14 @@ const ProductDetails = () => {
   const [selectedSize, setSelectedSize] = useState("");
   const { id } = useParams();
   const { cart, setCart } = useContext(AppContext);
+  const API_URL = import.meta.env.VITE_API_URL;
+
+
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await axios.get(`http://localhost:8081/api/products/${id}`);
+       const res = await axios.get(`${API_URL}/api/products/${id}`);
         setProduct(res.data);
       } catch (err) {
         console.error("Error fetching product:", err);

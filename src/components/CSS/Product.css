@@ -6,16 +6,29 @@
   overflow: hidden;
 }
 
-.view-details-button {
-  margin-top: 8px;
+.product-actions {
+  display: flex;
+  gap: 12px; /* gap between buttons */
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.view-details-button,
+.buy-now-button {
   padding: 8px 16px;
-  background-color: green;
-  color: white;
   border: none;
   border-radius: 6px;
+  background-color: #007bff;
+  color: white;
   cursor: pointer;
+  font-weight: 500;
   transition: background-color 0.3s ease;
-  gap: 5px;
+}
+
+.view-details-button:hover,
+.buy-now-button:hover {
+  background-color: #0056b3;
 }
 
 .view-details-button:hover {
