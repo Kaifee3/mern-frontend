@@ -18,6 +18,7 @@ export default function Cart() {
     address: "",
     landmark: "",
     city: "",
+    pincode:"",
     state: "",
     country: "",
   });
@@ -50,7 +51,7 @@ export default function Cart() {
         email: user.email,
         orderValue,
         items: cart,
-        shippingDetails: formData, // Include shipping info
+        shippingDetails: formData, 
       };
       await axios.post(url, newOrder);
       setCart([]);
@@ -73,26 +74,27 @@ export default function Cart() {
       <h2 className="cart-title">My Cart</h2>
       <p className="cart-error">{error}</p>
       {cart &&
-        cart.map(
-          (value) =>
-            value.qty > 0 && (
-              <li className="cart-item" key={value._id}>
-                <img src={value.imgUrl} alt={value.productName} />
-                <div className="cart-item-details">
-                  <span className="cart-item-name">{value.productName}</span>
-                  <span className="cart-item-price">₹{value.price}</span>
-                  <span className="cart-qty-controls">
-                    <button onClick={() => decrement(value._id, value.qty)}>-</button>
-                    {value.qty}
-                    <button onClick={() => increment(value._id, value.qty)}>+</button>
-                  </span>
-                  <span className="cart-item-total">
-                    Total: ₹{value.price * value.qty}
-                  </span>
-                </div>
-              </li>
-            )
-        )}
+  cart.map(
+    (value) =>
+      value.qty > 0 && (
+        <li className="cart-item" key={value._id}>
+          <img src={value.imgUrl} alt={value.productName} />
+          <div className="cart-item-details">
+            <span className="cart-item-name">{value.productName}</span>
+            <span className="cart-item-size">Size: {value.size}</span>
+            <span className="cart-item-price">Price: ₹{value.price}</span>
+            <span className="cart-qty-controls">
+              <button onClick={() => decrement(value._id, value.qty)}>-</button>
+              {value.qty}
+              <button onClick={() => increment(value._id, value.qty)}>+</button>
+            </span>
+            <span className="cart-item-total">
+              Total: ₹{value.price * value.qty}
+            </span>
+          </div>
+        </li>
+      )
+  )}
       <h5 className="order-summary">Order Value: ₹{orderValue}</h5>
 
       {user?.token ? (
@@ -109,6 +111,7 @@ export default function Cart() {
               <input name="address" placeholder="Address" onChange={handleInputChange} />
               <input name="landmark" placeholder="Landmark" onChange={handleInputChange} />
               <input name="city" placeholder="City" onChange={handleInputChange} />
+              <input name="pincode" placeholder="pincode" onChange={handleInputChange} />
               <input name="state" placeholder="State" onChange={handleInputChange} />
               <input name="country" placeholder="Country" onChange={handleInputChange} />
               <button className="confirm-order-btn" onClick={placeOrder}>

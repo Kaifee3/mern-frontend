@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { AppContext } from "../App";
@@ -10,30 +11,26 @@ export default function Product() {
   const { cart, setCart, products, setProducts } = useContext(AppContext);
   const [allProducts, setAllProducts] = useState([]);
 
-  // Fetch products from backend
   const fetchProducts = async () => {
     try {
       const { data } = await axios.get(`${API_URL}/api/products/all`);
-      setProducts(data.products);     // Update context
-      setAllProducts(data.products); // Update local state
+      setProducts(data.products);
+      setAllProducts(data.products);
     } catch (err) {
       console.error("Error fetching products:", err);
     }
   };
 
-  // Run once on page load
   useEffect(() => {
     fetchProducts();
   }, []);
 
-  // Re-sync local display when context updates
   useEffect(() => {
     if (products.length > 0) {
       setAllProducts(products);
     }
   }, [products]);
 
-  // Add to cart
   const addToCart = (product) => {
     const found = cart.find((item) => item._id === product._id);
     if (!found) {
@@ -44,7 +41,6 @@ export default function Product() {
 
   return (
     <div>
-      {/* Banner Carousel */}
       <div className="carousel-container">
         <Carousel
           showThumbs={false}
@@ -69,22 +65,20 @@ export default function Product() {
         </Carousel>
       </div>
 
-      {/* Product Cards */}
       <div className="product-container">
         {allProducts.map((product) => (
           <div className="product-card" key={product._id}>
-            <img
-              className="product-image"
-              src={product.imgUrl}
-              alt={product.productName}
-            />
+            <Link to={`/product/${product._id}`}>
+              <img
+                className="product-image"
+                src={product.imgUrl}
+                alt={product.productName}
+              />
+            </Link>
             <h3 className="product-title">{product.productName}</h3>
             <p className="product-description">{product.description}</p>
             <h4 className="product-price">₹{product.price}</h4>
-            <button
-              className="add-to-cart-button"
-              onClick={() => addToCart(product)}
-            >
+            <button className="add-to-cart-button" onClick={() => addToCart(product)}>
               Add to Cart
             </button>
           </div>

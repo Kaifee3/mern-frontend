@@ -79,6 +79,23 @@ export default function Orders() {
               <div>
                 <strong>Status:</strong> {order.status}
               </div>
+
+              {/* 📦 Show Items with Size */}
+              <div className="order-item">
+                <div>
+                  <strong>Items:</strong>
+                </div>
+                <ul>
+                  {order.items.map((item, index) => (
+                    <li key={index}>
+                      <span className="item-name">{item.productName}</span>
+                      <span className="item-quantity">{item.qty} pcs</span>
+                      <span className="item-size">Size: {item.size}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
               {order.status === "Pending" && (
                 <div className="order-actions">
                   <button

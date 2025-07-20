@@ -17,6 +17,14 @@
   margin-bottom: 24px;
 }
 
+.cart-item-size {
+  font-size: 0.95rem;
+  color: #444;
+  margin: 4px 0;
+  display: block;
+}
+
+
 .cart-error {
   color: red;
   text-align: center;

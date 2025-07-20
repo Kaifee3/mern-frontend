@@ -50,6 +50,7 @@ export default function Order() {
                 <tr>
                   <th>Product</th>
                   <th>Image</th>
+                   <th>Size</th>
                   <th>Price (₹)</th>
                   <th>Quantity</th>
                   <th>Total (₹)</th>
@@ -66,6 +67,7 @@ export default function Order() {
                         alt={item.productName}
                       />
                     </td>
+                    <td>{item.size}</td>
                     <td>{item.price}</td>
                     <td>{item.qty}</td>
                     <td>{item.qty * item.price}</td>
