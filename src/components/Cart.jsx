@@ -15,7 +15,7 @@ export default function Cart() {
   const [formData, setFormData] = useState({
     name: "",
     number: "",
-    address: "",
+    address:"",
     landmark: "",
     city: "",
     pincode:"",
