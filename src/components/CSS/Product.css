@@ -6,6 +6,29 @@
   overflow: hidden;
 }
 
+.view-details-button {
+  margin-top: 8px;
+  padding: 8px 16px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  gap: 5px;
+}
+
+.view-details-button:hover {
+  background-color: #1d8d07;
+}
+
+.product-actions {
+  display: flex;
+  gap: 10px;        
+  margin-top: 10px; 
+  margin-left: 30px;
+}
+
 
 
 .carousel .slide img {
