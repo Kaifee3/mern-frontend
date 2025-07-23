@@ -54,7 +54,7 @@ export default function Header() {
         />
         <button onClick={() => {
           handleSearch();
-          setMenuOpen(false); // hide after search
+          setMenuOpen(false); 
         }}>
           Search
         </button>
