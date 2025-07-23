@@ -20,8 +20,8 @@ export default defineConfig({
       registerType: "autoUpdate",
       includeAssets: ["favicon.svg", "robots.txt", "apple-touch-icon.png"],
       manifest: {
-        name: "MERN Frontend",
-        short_name: "MERN",
+        name: "SHOPSPHERE",
+        short_name: "ShopSphere",
         description: "MERN Stack",
         theme_color: "#ffffff",
         icons: [
