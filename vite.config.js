@@ -20,8 +20,8 @@ export default defineConfig({
       registerType: "autoUpdate",
       includeAssets: ["favicon.svg", "robots.txt", "apple-touch-icon.png"],
       manifest: {
-        name: "SHOPSPHERE",
-        short_name: "ShopSphere",
+        name: "The Daily Cart",
+        short_name: "The Daily Cart",
         description: "MERN Stack",
         theme_color: "#ffffff",
         icons: [
